@@ -1,6 +1,7 @@
 <?php
 include 'Plan.php';
 include 'Canal.php';
+include 'Cliente.php';
 class Contrato{
 
     private $fechaInicio;
