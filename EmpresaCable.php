@@ -116,6 +116,26 @@ class Cable{
         }
     }
 
+    public function retornarPromImporteContratos($codigoPlan) {
+        $totalImporte = 0;
+        $cantidad = 0;
+        $colContratos = $this->getColeccionContratos();
+
+        foreach ($colContratos as $contrato) {
+            if ($contrato->getPlan()->getCodigo() == $codigoPlan) {
+                $totalImporte += $contrato->calcularImporte();
+                $cantidad++;
+            }
+        }
+
+        $promedio = 0;
+        if ($cantidad > 0) {
+            $promedio = $totalImporte / $cantidad;
+        }
+
+        return $promedio;
+    }
+
     public function __toString(){
         $cadena = "Nombre: ".$this->getNombre()." - Direccion: ".$this->getDireccion()." - Telefono: ".$this->getTelefono()." - Contratos: \n";
         foreach($this->getColeccionContratos() as $contrato){
